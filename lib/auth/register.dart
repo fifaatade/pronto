@@ -1,4 +1,8 @@
+import 'package:extended_phone_number_input/consts/enums.dart';
+import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -11,7 +15,157 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  height: 440,
+                  color: Colors.white,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/logo_red.png',
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    const Row(
+                      children: [
+                        Text(
+                          'Inscrivez-vous',
+                          style: TextStyle(
+                              fontSize: 26,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Poppins'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Row(
+                      children: [
+                        Text(
+                          'Numéro do téléphone',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    PhoneNumberInput(
+                      initialCountry: 'BJ',
+                      locale: 'fr',
+                      countryListMode: CountryListMode.bottomSheet,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      allowPickFromContacts: false,
+                      hint: 'XXXXXXXXXXX',
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            // Début de la sélection
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(() {});
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: const Color(
+                                      0xFFF00020), // couleur de fond du bouton
+                                  // Fin de la sélection
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(26),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 12),
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    'Continuer',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Register()),
+                                      (Route<dynamic> route) => false);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor:
+                                      Colors.white, // couleur de fond du bouton
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(26),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 12),
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    'J\'ai déjà un compte',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

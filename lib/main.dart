@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Proton',
+      title: 'Plonto',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(
