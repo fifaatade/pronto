@@ -42,6 +42,7 @@ class _OnBoardingState extends State<OnBoarding> {
     ///\n Parce-que nos enfants méritent ce qu\'ils y a de mieux
   ];
 
+  @override
   void initState() {
     super.initState();
   }
@@ -50,71 +51,97 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _currentSlideIndex = index;
-              });
-            },
-            children: renderListCustomTabs(MediaQuery.of(context).size.width),
-          ),
-          Positioned(
-            bottom: 300,
-            left: 20,
-            right: 20,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentSlideIndex = index;
+                  });
+                },
+                children:
+                    renderListCustomTabs(MediaQuery.of(context).size.width),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buildSlideIndicators(),
+                    children: [
+                      // Début de la sélection
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              if (_currentSlideIndex ==
+                                  _imagesList.length - 1) {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Register()),
+                                    (Route<dynamic> route) => false);
+                              } else {
+                                _currentSlideIndex = _currentSlideIndex + 1;
+                                _pageController.animateToPage(
+                                  _currentSlideIndex,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut,
+                                );
+                              }
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: const Color(
+                                0xFFF00020), // couleur de fond du bouton
+                            // Fin de la sélection
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(26),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 12),
+                          ),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Continuer',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-              bottom: 65,
-              left: 16,
-              right: 16,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Column(
-                  children: [
+                  if (_currentSlideIndex != _imagesList.length - 1)
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  if (_currentSlideIndex != _imagesList.length - 1)
                     Row(
                       children: [
-                        // Début de la sélection
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                if (_currentSlideIndex ==
-                                    _imagesList.length - 1) {
-                                  Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Register()),
-                                      (Route<dynamic> route) => false);
-                                } else {
-                                  _currentSlideIndex = _currentSlideIndex + 1;
-                                  _pageController.animateToPage(
-                                    _currentSlideIndex,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                  );
-                                }
-                              });
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Register()),
+                                  (Route<dynamic> route) => false);
                             },
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
-                              backgroundColor: const Color(
-                                  0xFFF00020), // couleur de fond du bouton
-                              // Fin de la sélection
+                              backgroundColor:
+                                  Colors.white, // couleur de fond du bouton
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(26),
                               ),
@@ -124,12 +151,12 @@ class _OnBoardingState extends State<OnBoarding> {
                             child: Container(
                               alignment: Alignment.center,
                               child: const Text(
-                                'Continuer',
+                                'Passer',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 14,
                                   fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -137,52 +164,11 @@ class _OnBoardingState extends State<OnBoarding> {
                         ),
                       ],
                     ),
-                    if (_currentSlideIndex != _imagesList.length - 1)
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    if (_currentSlideIndex != _imagesList.length - 1)
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Register()),
-                                    (Route<dynamic> route) => false);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor:
-                                    Colors.white, // couleur de fond du bouton
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(26),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 12),
-                              ),
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Passer',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
-              ))
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -200,8 +186,15 @@ class _OnBoardingState extends State<OnBoarding> {
               width: width / 1.8,
             ),
           ),
-          SizedBox(
-            height: 200,
+          const SizedBox(
+            height: 150,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildSlideIndicators(),
+          ),
+          const SizedBox(
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -212,7 +205,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   children: [
                     Text(
                       slide['title'],
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 26,
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
@@ -225,7 +218,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     Flexible(
                       child: Text(
                         slide['description'],
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.w400),

@@ -1,8 +1,7 @@
 import 'package:extended_phone_number_input/consts/enums.dart';
 import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pronto/auth/confirm_number.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -19,7 +18,7 @@ class _RegisterState extends State<Register> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -58,7 +57,7 @@ class _RegisterState extends State<Register> {
                               color: Colors.black,
                               fontSize: 14,
                               fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -71,7 +70,13 @@ class _RegisterState extends State<Register> {
                       countryListMode: CountryListMode.bottomSheet,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(
+                            color: Color(0XFFCFCECE), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: const BorderSide(
+                            color: Color(0XFFCFCECE), width: 1),
                       ),
                       allowPickFromContacts: false,
                       hint: 'XXXXXXXXXXX',
@@ -87,7 +92,14 @@ class _RegisterState extends State<Register> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  setState(() {});
+                                  setState(() {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ConfirmNumber(),
+                                        ));
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0,
@@ -108,7 +120,7 @@ class _RegisterState extends State<Register> {
                                       color: Colors.white,
                                       fontSize: 14,
                                       fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
@@ -149,7 +161,7 @@ class _RegisterState extends State<Register> {
                                       color: Colors.black,
                                       fontSize: 14,
                                       fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
