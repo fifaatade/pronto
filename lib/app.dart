@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pronto/auth/login.dart';
 import 'package:pronto/auth/register.dart';
+import 'package:pronto/courses/create_course.dart';
 import 'package:pronto/home.dart';
 import 'package:pronto/onboarding/onboarding.dart';
 
@@ -27,7 +28,7 @@ class _AppState extends State<App> {
       body: [
         const Home(),
         const Register(),
-        const Login(),
+        const CreateCourse(),
         const OnBoarding()
       ][_currentIndex],
       bottomNavigationBar: SizedBox(

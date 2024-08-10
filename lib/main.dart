@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/courses/create_course.dart';
 import 'package:pronto/onboarding/splash_screen.dart';
 
 void main() async {
