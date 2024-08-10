@@ -3,6 +3,7 @@ import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
 import 'package:pronto/auth/confirm_number.dart';
 import 'package:pronto/auth/register.dart';
+import 'package:pronto/app.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -148,8 +149,7 @@ class _LoginState extends State<Login> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ConfirmNumber(),
+                                          builder: (context) => App(),
                                         ));
                                   });
                                 },
