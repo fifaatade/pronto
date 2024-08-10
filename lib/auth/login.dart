@@ -109,7 +109,7 @@ class _LoginState extends State<Login> {
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
                           ),
-                          prefixIcon: const Icon(Icons.password_rounded),
+                          prefixIcon: const Icon(Icons.lock_outline_rounded),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
