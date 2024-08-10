@@ -2,16 +2,17 @@ import 'package:extended_phone_number_input/consts/enums.dart';
 import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
 import 'package:pronto/auth/confirm_number.dart';
-import 'package:pronto/auth/login.dart';
+import 'package:pronto/auth/register.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginState extends State<Login> {
+  bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.55,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -82,6 +83,56 @@ class _RegisterState extends State<Register> {
                       allowPickFromContacts: false,
                       hint: 'XXXXXXXXXXX',
                     ),
+                    const Row(
+                      children: [
+                        Text(
+                          'Mot de passe',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: _showPassword,
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          hintText: 'Entrez votre mot de passe',
+                          hintStyle: const TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                          ),
+                          prefixIcon: const Icon(Icons.password_rounded),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showPassword = !_showPassword;
+                              });
+                            },
+                            child: Icon(_showPassword
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                                color: Color(0XFFCFCECE), width: 1),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                                color: Color(0xFFF00020), width: 1.5),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                        )),
                     const SizedBox(
                       height: 20,
                     ),
@@ -116,7 +167,7 @@ class _RegisterState extends State<Register> {
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: const Text(
-                                    'Continuer',
+                                    'Connexion',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
@@ -140,7 +191,8 @@ class _RegisterState extends State<Register> {
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Login()),
+                                          builder: (context) =>
+                                              const Register()),
                                       (Route<dynamic> route) => false);
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -156,7 +208,7 @@ class _RegisterState extends State<Register> {
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: const Text(
-                                    'J\'ai déjà un compte',
+                                    'J\'ai pas un compte',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 14,

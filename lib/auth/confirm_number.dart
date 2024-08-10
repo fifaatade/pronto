@@ -9,6 +9,37 @@ class ConfirmNumber extends StatefulWidget {
 }
 
 class _ConfirmNumberState extends State<ConfirmNumber> {
+  final List<TextEditingController> _controllers =
+      List.generate(5, (_) => TextEditingController());
+  final List<FocusNode> _focusNodes = List.generate(5, (_) => FocusNode());
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in _focusNodes) {
+      focusNode.dispose();
+    }
+    super.dispose();
+  }
+
+  void _nextField({required String value, required int currentIndex}) {
+    if (value.length == 1 && currentIndex < 4) {
+      _focusNodes[currentIndex + 1].requestFocus();
+    } else if (value.isEmpty && currentIndex > 0) {
+      _focusNodes[currentIndex - 1].requestFocus();
+    }
+  }
+
+  void _submitOTP() {
+    String otp = _controllers.map((controller) => controller.text).join();
+    // You can now use the OTP value, e.g., send it to the server
+    print("OTP entered: $otp");
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('OTP entered: $otp')));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +73,37 @@ class _ConfirmNumberState extends State<ConfirmNumber> {
                   height: 20,
                 ),
                 Row(
-                  children: [],
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(5, (index) {
+                    return Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0XFFCFCECE)),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: TextFormField(
+                        controller: _controllers[index],
+                        focusNode: _focusNodes[index],
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.black),
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          counterText: '',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                                color: Color(0xFFF00020), width: 1),
+                          ),
+                        ),
+                        onChanged: (value) =>
+                            _nextField(value: value, currentIndex: index),
+                      ),
+                    );
+                  }),
                 ),
                 SizedBox(
                   height: 20,

@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:extended_phone_number_input/consts/enums.dart';
 import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
 import 'package:pronto/auth/confirm_number.dart';
+import 'package:pronto/auth/login.dart';
 
 class RegisterPassword extends StatefulWidget {
   const RegisterPassword({super.key});
@@ -9,6 +12,8 @@ class RegisterPassword extends StatefulWidget {
   @override
   State<RegisterPassword> createState() => _RegisterPasswordState();
 }
+
+var reg = RegExp(r"(?=.*?[!@#&()\-[\]{}:;\',?/*~$^+=<>])");
 
 enum Gender { homme, femme }
 
@@ -27,9 +32,6 @@ class _RegisterPasswordState extends State<RegisterPassword> {
   _validatePassword(String? value) {
     // Minimum 8 characters, Maximum 20 characters
     if (value == null || value.isEmpty) {
-      return 'Le mot de passe ne peut pas être vide';
-    }
-    if (value.length < 8 || value.length > 20) {
       setState(() {
         _has820Caracteres = false;
         _hasCaracteres = false;
@@ -39,9 +41,15 @@ class _RegisterPasswordState extends State<RegisterPassword> {
         _hasMatch = false;
         _hasMajLetter = false;
       });
+    }
+    // log(value!.length.toString());
+    if (value!.length < 8 || value.length > 20) {
+      setState(() {
+        _has820Caracteres = false;
+      });
     } else {
       setState(() {
-        _hasCaracteres = true;
+        _has820Caracteres = true;
       });
     }
 
@@ -78,16 +86,29 @@ class _RegisterPasswordState extends State<RegisterPassword> {
       });
     }
 
-    // // At least one special character [!@#&()]
-    // if (!RegExp(r"(?=.*?[!@#&()–[{}]:;\',?/*~$^+=<>])").hasMatch(value)) {
-    //   setState(() {
-    //     _hasSpecialChar = false;
-    //   });
-    // } else {
-    //   setState(() {
-    //     _hasSpecialChar = true;
-    //   });
-    // }
+    // At least one special character [!@#&()]
+    if (!reg.hasMatch(value)) {
+      setState(() {
+        _hasSpecialChar = false;
+      });
+    } else {
+      setState(() {
+        _hasSpecialChar = true;
+      });
+    }
+    return null;
+  }
+
+  verifyPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      setState(() {
+        _hasMatch = false;
+      });
+    } else {
+      setState(() {
+        _hasMatch = true;
+      });
+    }
     return null;
   }
 
@@ -176,7 +197,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 2),
+                                color: Color(0xFFF00020), width: 1.5),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
@@ -228,7 +249,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 2),
+                                color: Color(0xFFF00020), width: 1.5),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
@@ -255,7 +276,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                       children: [
                         Icon(
                           _hasNumber == true
-                              ? Icons.check_circle_outline_rounded
+                              ? Icons.check_circle_rounded
                               : Icons.circle_outlined,
                           color: _hasNumber == true
                               ? Color(0xFF0B7B69)
@@ -286,7 +307,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                       children: [
                         Icon(
                           _hasSmallLetter == true
-                              ? Icons.check_circle_outline_rounded
+                              ? Icons.check_circle_rounded
                               : Icons.circle_outlined,
                           color: _hasSmallLetter == true
                               ? Color(0xFF0B7B69)
@@ -317,7 +338,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                       children: [
                         Icon(
                           _hasMajLetter == true
-                              ? Icons.check_circle_outline_rounded
+                              ? Icons.check_circle_rounded
                               : Icons.circle_outlined,
                           color: _hasMajLetter == true
                               ? Color(0xFF0B7B69)
@@ -348,7 +369,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                       children: [
                         Icon(
                           _hasSpecialChar == true
-                              ? Icons.check_circle_outline_rounded
+                              ? Icons.check_circle_rounded
                               : Icons.circle_outlined,
                           color: _hasSpecialChar == true
                               ? Color(0xFF0B7B69)
@@ -379,7 +400,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                       children: [
                         Icon(
                           _has820Caracteres == true
-                              ? Icons.check_circle_outline_rounded
+                              ? Icons.check_circle_rounded
                               : Icons.circle_outlined,
                           color: _has820Caracteres == true
                               ? Color(0xFF0B7B69)
@@ -418,8 +439,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ConfirmNumber(),
+                                          builder: (context) => const Login(),
                                         ));
                                   });
                                 },
@@ -432,7 +452,7 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                                     borderRadius: BorderRadius.circular(26),
                                   ),
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 12),
+                                      horizontal: 8, vertical: 14),
                                 ),
                                 child: Container(
                                   alignment: Alignment.center,

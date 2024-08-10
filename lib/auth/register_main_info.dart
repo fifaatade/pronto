@@ -87,7 +87,7 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 2),
+                                color: Color(0xFFF00020), width: 1.5),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
@@ -128,7 +128,7 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 2),
+                                color: Color(0xFFF00020), width: 1.5),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
@@ -169,7 +169,7 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
                             borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 2),
+                                color: Color(0xFFF00020), width: 1.5),
                           ),
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
@@ -274,7 +274,7 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                                     borderRadius: BorderRadius.circular(26),
                                   ),
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 12),
+                                      horizontal: 8, vertical: 14),
                                 ),
                                 child: Container(
                                   alignment: Alignment.center,
