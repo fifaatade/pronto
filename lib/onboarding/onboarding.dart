@@ -101,7 +101,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             borderRadius: BorderRadius.circular(26),
                           ),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 16),
+                              horizontal: 8, vertical: 14),
                         ),
                         child: Container(
                           alignment: Alignment.center,
@@ -143,7 +143,7 @@ class _OnBoardingState extends State<OnBoarding> {
                               borderRadius: BorderRadius.circular(26),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
+                                horizontal: 8, vertical: 14),
                           ),
                           child: Container(
                             alignment: Alignment.center,
@@ -171,61 +171,64 @@ class _OnBoardingState extends State<OnBoarding> {
 
   List<Widget> renderListCustomTabs(width) {
     return _imagesList.map((slide) {
-      return ListView(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 25),
-            alignment: Alignment.bottomCenter,
-            margin: const EdgeInsets.only(top: 80, left: 30, right: 30),
-            child: Image.asset(
-              slide['image'],
-              width: width / 1.8,
+      return Container(
+        padding: const EdgeInsets.only(top: 100),
+        child: ListView(
+          children: [
+            Container(
+              // padding: const EdgeInsets.only(top: 25),
+              // alignment: Alignment.bottomCenter,
+              margin: const EdgeInsets.only(left: 30, right: 30),
+              child: Image.asset(
+                slide['image'],
+                width: width / 1.8,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 150,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: _buildSlideIndicators(),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      slide['title'],
-                      style: const TextStyle(
-                          fontSize: 26,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Poppins'),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        slide['description'],
+            const SizedBox(
+              height: 80,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildSlideIndicators(),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        slide['title'],
                         style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 26,
                             color: Colors.black,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Poppins'),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          slide['description'],
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       );
     }).toList();
   }
