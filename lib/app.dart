@@ -27,9 +27,9 @@ class _AppState extends State<App> {
     return Scaffold(
       body: [
         const Home(),
-        const Register(),
-        const CreateCourse(),
-        const OnBoarding()
+        const Home(),
+        const Home(),
+        const Home()
       ][_currentIndex],
       bottomNavigationBar: SizedBox(
         height: 70,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/courses/create_course.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,14 +10,46 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List items = [
-    {'title': 'Courses', 'image': "assets/images/Livraison.png"},
-    {'title': 'Tricycle', 'image': "assets/images/Livraison.png"},
-    {'title': 'Pronto school', 'image': "assets/images/Livraison.png"},
-    {'title': 'Livraison', 'image': "assets/images/Livraison.png"},
-    {'title': 'Déménagement', 'image': "assets/images/deplacement.png"},
-    {'title': 'Location', 'image': "assets/images/Livraison.png"},
-    {'title': 'Réservation', 'image': "assets/images/Livraison.png"},
-    {'title': 'Plan business', 'image': "assets/images/Livraison.png"},
+    {
+      'title': 'Courses',
+      'image': "assets/images/Livraison.png",
+      "route": "Courses"
+    },
+    {
+      'title': 'Tricycle',
+      'image': "assets/images/Livraison.png",
+      "route": "Tricycle"
+    },
+    {
+      'title': 'Pronto school',
+      'image': "assets/images/Livraison.png",
+      "route": "Pronto school"
+    },
+    {
+      'title': 'Livraison',
+      'image': "assets/images/Livraison.png",
+      "route": "Livraison"
+    },
+    {
+      'title': 'Déménagement',
+      'image': "assets/images/deplacement.png",
+      "route": "Déménagement"
+    },
+    {
+      'title': 'Location',
+      'image': "assets/images/Livraison.png",
+      "route": "Location"
+    },
+    {
+      'title': 'Réservation',
+      'image': "assets/images/Livraison.png",
+      "route": "Réservation"
+    },
+    {
+      'title': 'Plan business',
+      'image': "assets/images/Livraison.png",
+      "route": "Plan business"
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -172,34 +205,46 @@ class _HomeState extends State<Home> {
                     child: Wrap(
                       children: [
                         ...items
-                            .map((item) => Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 70,
-                                        height: 70,
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 5, vertical: 8),
-                                        decoration: BoxDecoration(
-                                            color: Color.fromARGB(
-                                                139, 240, 238, 234),
-                                            borderRadius:
-                                                BorderRadius.circular(35)),
-                                        child: Image.asset(item['image'],
-                                            width: 30, height: 30),
-                                      ),
-                                      Text(
-                                        item['title'],
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w400,
+                            .map((item) => GestureDetector(
+                                  onTap: () {
+                                    if (item['route'] == "Courses") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CreateCourse(),
+                                          ));
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 70,
+                                          height: 70,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 5, vertical: 8),
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  139, 240, 238, 234),
+                                              borderRadius:
+                                                  BorderRadius.circular(35)),
+                                          child: Image.asset(item['image'],
+                                              width: 30, height: 30),
                                         ),
-                                      )
-                                    ],
+                                        Text(
+                                          item['title'],
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ))
                             .toList()
