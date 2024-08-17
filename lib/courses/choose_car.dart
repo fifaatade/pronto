@@ -155,7 +155,7 @@ class _ChooseCarState extends State<ChooseCar> {
                                   width: 60.87,
                                   height: 20,
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Expanded(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -183,11 +183,11 @@ class _ChooseCarState extends State<ChooseCar> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
-                                                  Icon(
+                                                  const Icon(
                                                     Icons.access_time_outlined,
                                                     size: 10,
                                                   ),
-                                                  SizedBox(width: 5),
+                                                  const SizedBox(width: 5),
                                                   Text(
                                                     "${car['duration']}",
                                                     style: const TextStyle(
@@ -222,7 +222,7 @@ class _ChooseCarState extends State<ChooseCar> {
                     .toList(),
                 const SizedBox(height: 25),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
                     children: [
                       // Début de la sélection
