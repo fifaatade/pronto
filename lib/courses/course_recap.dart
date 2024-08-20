@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pronto/courses/choose_car.dart';
 import 'package:pronto/courses/choose_destination.dart';
+import 'package:pronto/courses/driver_comming.dart';
 import 'package:pronto/courses/paiement_choice.dart';
 
 class CourseRecap extends StatefulWidget {
@@ -387,7 +388,9 @@ class _CourseRecapState extends State<CourseRecap> {
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {
-                                setState(() {});
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const DriverComming(),
+                                ));
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
