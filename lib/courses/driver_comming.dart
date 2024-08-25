@@ -4,7 +4,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pronto/courses/call_screen.dart';
 import 'package:pronto/courses/create_course.dart';
+import 'package:pronto/courses/driver_there.dart';
+import 'package:pronto/courses/end_course.dart';
+import 'package:pronto/courses/messaging.dart';
 import 'package:pronto/courses/paiement_choice.dart';
 
 class DriverComming extends StatefulWidget {
@@ -107,7 +111,11 @@ class _DriverCommingState extends State<DriverComming> {
                 ),
                 const SizedBox(height: 25),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DriverThere(),
+                    ));
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.all(16),
@@ -183,116 +191,130 @@ class _DriverCommingState extends State<DriverComming> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Color(0XFFF0EEEA),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(60),
-                              border: Border.all(
-                                  width: 3, color: Color(0XFFFFFFFF))),
-                          child: ClipRRect(
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(16),
+                  decoration: const BoxDecoration(
+                    color: Color(0XFFF0EEEA),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(60),
-                            child: Image.asset(
-                              "assets/images/driver_profile.jpg",
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
+                            border: Border.all(
+                                width: 3, color: const Color(0XFFFFFFFF))),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(60),
+                          child: Image.asset(
+                            "assets/images/driver_profile.jpg",
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                child: const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Jake Muss",
-                                            style: TextStyle(
-                                                color: Color(0XFF221F1F),
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                fontFamily: 'Poppins'),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            "4,5",
-                                            style: TextStyle(
-                                                color: Color(0XFF221F1F),
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 12,
-                                                fontFamily: 'Poppins'),
-                                          ),
-                                          const SizedBox(width: 3),
-                                          Icon(
-                                            Icons.star,
-                                            color: Color(0XFFEDA145),
-                                            size: 14,
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Suzuki Alto Blanc BV0016",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10,
-                                                fontFamily: 'Poppins'),
-                                          ),
-                                        ],
-                                      ),
-                                    ]),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(8),
+                              child: const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Jake Muss",
+                                          style: TextStyle(
+                                              color: Color(0XFF221F1F),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                              fontFamily: 'Poppins'),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          "4,5",
+                                          style: TextStyle(
+                                              color: Color(0XFF221F1F),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                              fontFamily: 'Poppins'),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Icon(
+                                          Icons.star,
+                                          color: Color(0XFFEDA145),
+                                          size: 14,
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Suzuki Alto Blanc BV0016",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 10,
+                                              fontFamily: 'Poppins'),
+                                        ),
+                                      ],
+                                    ),
+                                  ]),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CallScreen(),
+                                  ));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.phone,
                                 size: 20.6,
                                 color: Colors.red,
                               ),
                             ),
-                            SizedBox(width: 10),
-                            Container(
-                              padding: EdgeInsets.all(8),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Messaging(),
+                                  ));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.message_rounded,
                                 size: 20.6,
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -308,8 +330,7 @@ class _DriverCommingState extends State<DriverComming> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        const PaiementChoice(),
+                                    builder: (context) => const EndCourse(),
                                   ));
                             });
                           },
@@ -320,7 +341,7 @@ class _DriverCommingState extends State<DriverComming> {
                             // Fin de la sélection
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(26),
-                                side: BorderSide(
+                                side: const BorderSide(
                                   color: Color(0XFFDBD6CD),
                                 )),
                             padding: const EdgeInsets.symmetric(

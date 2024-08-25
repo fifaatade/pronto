@@ -1,9 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pronto/courses/call_screen.dart';
 import 'package:pronto/courses/choose_car.dart';
 import 'package:pronto/courses/choose_destination.dart';
 import 'package:pronto/courses/create_course.dart';
+import 'package:pronto/courses/driver_there.dart';
+import 'package:pronto/courses/end_course.dart';
+import 'package:pronto/courses/messaging.dart';
 import 'package:pronto/onboarding/splash_screen.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
