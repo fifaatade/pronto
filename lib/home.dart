@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pronto/courses/create_course.dart';
+import 'package:pronto/reservations/index.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -43,7 +44,7 @@ class _HomeState extends State<Home> {
     {
       'title': 'Réservation',
       'image': "assets/images/Livraison.png",
-      "route": "Réservation"
+      "route": "Reservation"
     },
     {
       'title': 'Plan business',
@@ -213,6 +214,14 @@ class _HomeState extends State<Home> {
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 const CreateCourse(),
+                                          ));
+                                    }
+                                    if (item['route'] == "Reservation") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const IndexReservation(),
                                           ));
                                     }
                                   },

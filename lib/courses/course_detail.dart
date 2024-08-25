@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/app.dart';
 import 'package:pronto/home.dart';
 
 class CourseDetail extends StatefulWidget {
@@ -544,7 +545,7 @@ class _CourseDetailState extends State<CourseDetail> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const Home(),
+                                builder: (context) => App(),
                               ));
                         });
                       },
