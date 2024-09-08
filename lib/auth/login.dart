@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.47,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
                     const Row(
                       children: [
                         Text(
-                          'Inscrivez-vous',
+                          'Connexions',
                           style: TextStyle(
                               fontSize: 26,
                               color: Colors.black,
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 24,
                     ),
                     const Row(
                       children: [
@@ -83,6 +83,9 @@ class _LoginState extends State<Login> {
                       ),
                       allowPickFromContacts: false,
                       hint: 'XXXXXXXXXXX',
+                    ),
+                    SizedBox(
+                      height: 12,
                     ),
                     const Row(
                       children: [
@@ -135,7 +138,7 @@ class _LoginState extends State<Login> {
                               horizontal: 16, vertical: 12),
                         )),
                     const SizedBox(
-                      height: 20,
+                      height: 24,
                     ),
                     Column(
                       children: [

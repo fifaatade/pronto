@@ -19,6 +19,7 @@ class DriverComming extends StatefulWidget {
 }
 
 class _DriverCommingState extends State<DriverComming> {
+  int is_selected = 1;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -327,11 +328,305 @@ class _DriverCommingState extends State<DriverComming> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const EndCourse(),
-                                  ));
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      clipBehavior: Clip.none,
+                                      insetPadding: EdgeInsets.all(10),
+                                      contentPadding: const EdgeInsets.all(10),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      content: Container(
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Icon(
+                                                    Icons.close,
+                                                    size: 15,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                'Pourquoi souhaitez vous annuler la course ?',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0XFF221F1F)),
+                                              ),
+                                              SizedBox(height: 10),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    is_selected = 1;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6),
+                                                    color:
+                                                        const Color(0XFFF0EEEA),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Flexible(
+                                                        child: const Text(
+                                                          'J’ai trouvé un autre moyen de transport',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  'Poppins'),
+                                                        ),
+                                                      ),
+                                                      Radio(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xFFF00020),
+                                                          value: is_selected,
+                                                          groupValue: 1,
+                                                          onChanged:
+                                                              (value) {}),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 10),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    is_selected = 2;
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              6),
+                                                      color: const Color(
+                                                          0XFFF0EEEA)),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Flexible(
+                                                        child: const Text(
+                                                          'J’ai accidentellement réservé le mauvais services',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  'Poppins'),
+                                                        ),
+                                                      ),
+                                                      Radio(
+                                                          activeColor:
+                                                              const Color(
+                                                                  0xFFF00020),
+                                                          focusColor:
+                                                              const Color(
+                                                                  0xFFC5BDAE),
+                                                          value: is_selected,
+                                                          groupValue: 2,
+                                                          onChanged:
+                                                              (value) {}),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 16),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Autre',
+                                                    style: TextStyle(
+                                                      color: Color(0XFF221F1F),
+                                                      fontSize: 14,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 6),
+                                              TextFormField(
+                                                  maxLines: 5,
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  decoration: InputDecoration(
+                                                    hintText:
+                                                        'Dites nous la raison',
+                                                    hintStyle: const TextStyle(
+                                                      fontSize: 12,
+                                                      fontFamily: 'Poppins',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    alignLabelWithHint: true,
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color: Color(
+                                                                  0XFFCECECE),
+                                                              width: 1),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color: Color(
+                                                                  0xFFF00020),
+                                                              width: 1.5),
+                                                    ),
+                                                    contentPadding:
+                                                        const EdgeInsets
+                                                            .symmetric(
+                                                            horizontal: 16,
+                                                            vertical: 12),
+                                                  )),
+                                              SizedBox(height: 16),
+                                              Row(
+                                                children: [
+                                                  // Début de la sélection
+                                                  Expanded(
+                                                    child: ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        elevation: 0,
+                                                        backgroundColor:
+                                                            const Color(
+                                                                0xFFF00020), // couleur de fond du bouton
+                                                        // Fin de la sélection
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(26),
+                                                        ),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 8,
+                                                                vertical: 14),
+                                                      ),
+                                                      child: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: const Text(
+                                                          'Continuer',
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 14,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        elevation: 0,
+                                                        backgroundColor: Colors
+                                                            .white, // couleur de fond du bouton
+                                                        // Fin de la sélection
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            26),
+                                                                side:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0XFFDBD6CD),
+                                                                )),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 8,
+                                                                vertical: 14),
+                                                      ),
+                                                      child: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: const Text(
+                                                          'Annuler',
+                                                          style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 14,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
                             });
                           },
                           style: ElevatedButton.styleFrom(

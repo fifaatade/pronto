@@ -11,6 +11,7 @@ import 'package:pronto/courses/messaging.dart';
 import 'package:pronto/onboarding/splash_screen.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:pronto/reservations/reservation_time_set.dart';
 
 void main() async {
   // final GoogleMapsFlutterPlatform mapsImplementation =

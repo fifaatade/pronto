@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/courses/end_course.dart';
 
 class CallScreen extends StatefulWidget {
   const CallScreen({super.key});
@@ -101,6 +102,9 @@ class _CallScreenState extends State<CallScreen> {
                       child: IconButton(
                           onPressed: () {
                             Navigator.pop(context);
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => EndCourse(),
+                            ));
                           },
                           icon: const Icon(
                             Icons.call_end,

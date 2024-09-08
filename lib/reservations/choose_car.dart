@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:pronto/courses/create_course.dart';
+
 import 'package:pronto/reservations/paiement_choice.dart';
 
 class ChooseCar extends StatefulWidget {

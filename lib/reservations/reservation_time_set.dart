@@ -1,18 +1,24 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:date_picker_plus/date_picker_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:pronto/reservations/choose_car.dart';
+import 'package:pronto/courses/choose_car.dart';
+import 'package:pronto/courses/create_course.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
+import 'package:pronto/reservations/reservation_recap.dart';
 
-class ChooseDestination extends StatefulWidget {
-  const ChooseDestination({super.key});
+class ReservationTimeset extends StatefulWidget {
+  const ReservationTimeset({super.key});
 
   @override
-  State<ChooseDestination> createState() => _ChooseDestinationState();
+  State<ReservationTimeset> createState() => _ReservationTimesetState();
 }
 
-class _ChooseDestinationState extends State<ChooseDestination> {
+class _ReservationTimesetState extends State<ReservationTimeset> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -86,7 +92,7 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                   children: [
                     Flexible(
                         child: Text(
-                      'Votre destination',
+                      'Définissez l’heure',
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
@@ -94,49 +100,93 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                     ))
                   ],
                 ),
-                const SizedBox(height: 15),
+                const Row(
+                  children: [
+                    Flexible(
+                        child: Text(
+                      'Quand souhaitez-vous partir ?',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          fontFamily: 'Poppins'),
+                    ))
+                  ],
+                ),
+                const SizedBox(height: 8),
                 const Divider(
                   height: 1,
                   color: Color(0XFFE4E4E4),
                 ),
                 const SizedBox(height: 25),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: const Color(0XFFF0EEEA)),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Super marché dupon',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Poppins'),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Abomey Calavi, Benin',
-                            style: TextStyle(
-                                color: Color(0XFF7A7474),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Poppins'),
-                          ),
-                        ],
+                TextFormField(
+                    onTap: () async {
+                      await showDatePickerDialog(
+                        width: 300,
+                        height: 300,
+                        context: context,
+                        initialDate: DateTime.now(),
+                        minDate: DateTime(2020, 1, 1),
+                        maxDate: DateTime(2330, 1, 1),
+                      );
+                    },
+                    keyboardType: TextInputType.datetime,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: 'dd/mm/yyyy',
+                      hintStyle: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
                       ),
-                      Icon(
-                        Icons.cancel_outlined,
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 25),
+                      prefixIcon: const Icon(Icons.date_range_outlined),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: const BorderSide(
+                            color: Color(0XFFCFCECE), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xFFF00020), width: 1.5),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                    )),
+                const SizedBox(height: 16),
+                TextFormField(
+                    onTap: () {
+                      picker.DatePicker.showTimePicker(context,
+                          showTitleActions: true, onChanged: (date) {
+                        print('change $date in time zone ' +
+                            date.timeZoneOffset.inHours.toString());
+                      }, onConfirm: (date) {
+                        print('confirm $date');
+                      }, currentTime: DateTime.now());
+                    },
+                    keyboardType: TextInputType.datetime,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: '00:00',
+                      hintStyle: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                      ),
+                      prefixIcon: const Icon(Icons.access_time_rounded),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: const BorderSide(
+                            color: Color(0XFFCFCECE), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xFFF00020), width: 1.5),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                    )),
+                const SizedBox(height: 16),
                 Row(
                   children: [
                     // Début de la sélection
@@ -147,7 +197,8 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const ChooseCar(),
+                                  builder: (context) =>
+                                      const ReservationRecap(),
                                 ));
                           });
                         },
@@ -165,7 +216,7 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                         child: Container(
                           alignment: Alignment.center,
                           child: const Text(
-                            'Confirmer l’adresse',
+                            'Continuer',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14,

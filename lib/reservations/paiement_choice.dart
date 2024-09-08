@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pronto/courses/course_recap.dart';
 import 'package:pronto/courses/create_course.dart';
+import 'package:pronto/reservations/reservation_time_set.dart';
 
 class PaiementChoice extends StatefulWidget {
   const PaiementChoice({super.key});
@@ -385,7 +386,8 @@ class _PaiementChoiceState extends State<PaiementChoice> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const CourseRecap(),
+                                    builder: (context) =>
+                                        const ReservationTimeset(),
                                   ));
                             });
                           },

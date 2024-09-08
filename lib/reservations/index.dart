@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pronto/reservations/choose_destination.dart';
 import 'package:pronto/reservations/course_recap.dart';
+import 'package:pronto/reservations/my_reservations.dart';
 
 class IndexReservation extends StatefulWidget {
   const IndexReservation({super.key});
@@ -195,7 +196,11 @@ class _IndexReservationState extends State<IndexReservation> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const MyReservations(),
+                          ));
+                        },
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           backgroundColor:

@@ -25,7 +25,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.55,
+                  height: MediaQuery.of(context).size.height * 0.57,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -83,7 +83,7 @@ class _RegisterState extends State<Register> {
                       hint: 'XXXXXXXXXXX',
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 24,
                     ),
                     Column(
                       children: [

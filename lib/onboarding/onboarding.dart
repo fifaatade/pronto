@@ -65,6 +65,9 @@ class _OnBoardingState extends State<OnBoarding> {
               children: renderListCustomTabs(MediaQuery.of(context).size.width),
             ),
           ),
+          SizedBox(
+            height: 40,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
@@ -192,7 +195,7 @@ class _OnBoardingState extends State<OnBoarding> {
               children: _buildSlideIndicators(),
             ),
             const SizedBox(
-              height: 30,
+              height: 32,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
