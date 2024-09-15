@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pronto/reservations/choose_destination.dart';
-import 'package:pronto/reservations/course_recap.dart';
-import 'package:pronto/reservations/index.dart';
+import 'package:pronto/demenagements/choose_destination.dart';
+import 'package:pronto/demenagements/course_recap.dart';
+import 'package:pronto/demenagements/index.dart';
 
 class ReservationRecap extends StatefulWidget {
   const ReservationRecap({super.key});
@@ -80,7 +80,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                 child: Row(
                   children: [
                     Image.asset(
-                      "assets/images/classic_car.png",
+                      "assets/images/camion.png",
                       width: 82.79,
                       height: 34,
                     ),
@@ -90,13 +90,13 @@ class _ReservationRecapState extends State<ReservationRecap> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            child: const Column(
+                            child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
                                       Text(
-                                        "Classic",
+                                        "Camion",
                                         style: TextStyle(
                                             color: Color(0XFF221F1F),
                                             fontWeight: FontWeight.w600,
@@ -108,12 +108,38 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "1000 F - 2000 F",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                            fontFamily: 'Poppins'),
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.access_time_outlined,
+                                            size: 10,
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            "5min",
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 10,
+                                                fontFamily: 'Poppins'),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            "assets/images/metter.png",
+                                            width: 20,
+                                          ),
+                                          const SizedBox(width: 2),
+                                          Text(
+                                            "20 m3",
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 10,
+                                                fontFamily: 'Poppins'),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -392,7 +418,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const IndexReservation(),
+                          builder: (context) => const IndexDemenagement(),
                         ));
                       },
                       style: ElevatedButton.styleFrom(
