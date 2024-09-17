@@ -168,7 +168,7 @@ class _IndexDemenagementState extends State<IndexDemenagement> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
+                /*  Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
@@ -206,7 +206,7 @@ class _IndexDemenagementState extends State<IndexDemenagement> {
                     ),
                   ],
                 ),
-              ],
+                */],
             ),
           ),
         ]),

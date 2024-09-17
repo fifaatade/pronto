@@ -8,6 +8,7 @@ import 'package:pronto/courses/create_course.dart';
 import 'package:pronto/courses/driver_there.dart';
 import 'package:pronto/courses/end_course.dart';
 import 'package:pronto/courses/messaging.dart';
+import 'package:pronto/home.dart';
 import 'package:pronto/onboarding/splash_screen.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: "Poppins",
       ),
-      home: const SplashScreen(),
+      home: const Home(),
     );
   }
 }
