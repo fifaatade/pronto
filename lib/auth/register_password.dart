@@ -118,14 +118,16 @@ class _RegisterPasswordState extends State<RegisterPassword> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: 240,
+                  height: 270,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -471,6 +473,9 @@ class _RegisterPasswordState extends State<RegisterPassword> {
                           ],
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 40,
                     ),
                   ],
                 )
