@@ -178,6 +178,7 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

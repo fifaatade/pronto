@@ -295,6 +295,7 @@ class _CourseRecapState extends State<CourseRecap> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),

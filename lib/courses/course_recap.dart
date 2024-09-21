@@ -421,6 +421,9 @@ class _CourseRecapState extends State<CourseRecap> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 30,
+                      ),
                     ],
                   ),
                 ),
