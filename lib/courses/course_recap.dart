@@ -195,6 +195,8 @@ class _CourseRecapState extends State<CourseRecap> {
                                       ),
                                       const SizedBox(height: 5),
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Flexible(
                                             child: Text(

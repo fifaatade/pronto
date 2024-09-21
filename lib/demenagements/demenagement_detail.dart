@@ -206,6 +206,8 @@ class _DemenagementDetailState extends State<DemenagementDetail> {
                                       ));
                                     },
                                     child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Flexible(
                                           child: Text(

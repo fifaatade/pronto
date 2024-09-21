@@ -181,6 +181,8 @@ class _CourseRecapState extends State<CourseRecap> {
                                           ));
                                         },
                                         child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Flexible(
                                               child: Text(

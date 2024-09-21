@@ -171,6 +171,8 @@ class _CreateCourseState extends State<CreateCourse> {
                                       ),
                                       const SizedBox(height: 5),
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Flexible(
                                             child: Text(
