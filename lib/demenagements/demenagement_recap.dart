@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pronto/demenagements/choose_destination.dart';
 import 'package:pronto/demenagements/course_recap.dart';
 import 'package:pronto/demenagements/index.dart';
+import 'package:pronto/demenagements/my_reservations.dart';
 
 class ReservationRecap extends StatefulWidget {
   const ReservationRecap({super.key});
@@ -427,7 +428,46 @@ class _ReservationRecapState extends State<ReservationRecap> {
               const SizedBox(
                 height: 24,
               ),
-              Row(
+               Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const MyReservations(),
+                          ));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor:const Color(
+                            0xFFF00020), // couleur de fond du bouton
+                          // Fin de la sélection
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(26),
+                              side: const BorderSide(
+                                color: Color(0XFFDBD6CD),
+                              )),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 14),
+                        ),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                          'Réservez',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+               
+              /* Row(
                 children: [
                   // Début de la sélection
                   Expanded(
@@ -463,7 +503,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                     ),
                   ),
                 ],
-              ),
+              ) ,*/
             ],
           ),
         ),
