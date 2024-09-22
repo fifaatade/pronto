@@ -241,6 +241,8 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                       ));
                                     },
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Flexible(
                                           child: Text(

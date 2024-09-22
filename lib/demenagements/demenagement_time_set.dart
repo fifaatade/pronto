@@ -120,13 +120,34 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                 TextFormField(
                     onTap: () async {
                       await showDatePickerDialog(
-                        width: 300,
-                        height: 300,
-                        context: context,
-                        initialDate: DateTime.now(),
-                        minDate: DateTime(2020, 1, 1),
-                        maxDate: DateTime(2330, 1, 1),
-                      );
+                          width: 300,
+                          height: 300,
+                          leadingDateTextStyle: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFF00020),
+                              fontWeight: FontWeight.w600),
+                          selectedCellTextStyle:
+                              TextStyle(fontSize: 15, color: Colors.white),
+                          currentDateTextStyle:
+                              TextStyle(fontSize: 15, color: Color(0xFFF00020)),
+                          currentDateDecoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xFFF00020),
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          enabledCellsTextStyle: TextStyle(
+                            fontSize: 15,
+                          ),
+                          selectedCellDecoration: BoxDecoration(
+                            color: Color(0xFFF00020),
+                            shape: BoxShape.circle,
+                          ),
+                          context: context,
+                          initialDate: DateTime.now(),
+                          minDate: DateTime(2020, 1, 1),
+                          maxDate: DateTime(2330, 1, 1),
+                          highlightColor: Color(0xFFF00020));
                     },
                     keyboardType: TextInputType.datetime,
                     readOnly: true,
@@ -228,6 +249,7 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

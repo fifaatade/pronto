@@ -22,14 +22,16 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: 240,
+                  height: 244,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -293,6 +295,9 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                           ],
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 40,
                     ),
                   ],
                 )

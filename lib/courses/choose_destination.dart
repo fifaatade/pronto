@@ -179,6 +179,9 @@ class _ChooseDestinationState extends State<ChooseDestination> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 30,
+                ),
               ],
             ),
           ),

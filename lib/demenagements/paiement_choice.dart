@@ -412,6 +412,7 @@ class _PaiementChoiceState extends State<PaiementChoice> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

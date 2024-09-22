@@ -207,6 +207,8 @@ class _ReservationDetailState extends State<ReservationDetail> {
                                       ));
                                     },
                                     child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Flexible(
                                           child: Text(

@@ -266,6 +266,9 @@ class _ChooseCarState extends State<ChooseCar> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
               ],
             ),
           ),

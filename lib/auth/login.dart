@@ -20,14 +20,16 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.47,
+                  height: 373,
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
@@ -223,6 +225,9 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(
+                          height: 40,
                         ),
                       ],
                     ),
