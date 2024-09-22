@@ -75,7 +75,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Color(0XFFF0EEEA),
+                  color: const Color(0XFFF0EEEA),
                 ),
                 child: Row(
                   children: [
@@ -122,18 +122,20 @@ class _ReservationRecapState extends State<ReservationRecap> {
                         ],
                       ),
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.edit_outlined,
-                        ),
+                        Image.asset(
+                          'assets/images/PencilSimpleLine.png',
+                          width: 26,
+                          height: 26,
+                        )
                       ],
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Column(
@@ -210,7 +212,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(
                                         builder: (context) =>
-                                            ChooseDestination(),
+                                            const ChooseDestination(),
                                       ));
                                     },
                                     child: Row(
@@ -228,7 +230,11 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                           ),
                                         ),
                                         const SizedBox(width: 5),
-                                        const Icon(Icons.edit_outlined),
+                                        Image.asset(
+                                          'assets/images/PencilSimpleLine.png',
+                                          width: 26,
+                                          height: 26,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -249,7 +255,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                     borderRadius: BorderRadius.circular(6)),
                                 child: Column(
                                   children: [
-                                    Row(
+                                    const Row(
                                       children: [
                                         Text(
                                           'Arrivée',
@@ -277,7 +283,11 @@ class _ReservationRecapState extends State<ReservationRecap> {
                                           ),
                                         ),
                                         const SizedBox(width: 5),
-                                        const Icon(Icons.edit_outlined),
+                                        Image.asset(
+                                          'assets/images/PencilSimpleLine.png',
+                                          width: 26,
+                                          height: 26,
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -291,7 +301,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Container(
@@ -326,10 +336,10 @@ class _ReservationRecapState extends State<ReservationRecap> {
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 10),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
+                          const Row(
                             children: [
                               Icon(
                                 Icons.calendar_today_outlined,
@@ -346,8 +356,10 @@ class _ReservationRecapState extends State<ReservationRecap> {
                               )
                             ],
                           ),
-                          Icon(
-                            Icons.edit_outlined,
+                          Image.asset(
+                            'assets/images/PencilSimpleLine.png',
+                            width: 26,
+                            height: 26,
                           )
                         ],
                       ),
@@ -355,10 +367,10 @@ class _ReservationRecapState extends State<ReservationRecap> {
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 10),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
+                          const Row(
                             children: [
                               Icon(
                                 Icons.access_time,
@@ -375,8 +387,10 @@ class _ReservationRecapState extends State<ReservationRecap> {
                               )
                             ],
                           ),
-                          Icon(
-                            Icons.edit_outlined,
+                          Image.asset(
+                            'assets/images/PencilSimpleLine.png',
+                            width: 26,
+                            height: 26,
                           )
                         ],
                       ),
@@ -384,7 +398,7 @@ class _ReservationRecapState extends State<ReservationRecap> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Row(

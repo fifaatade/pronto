@@ -189,8 +189,11 @@ class _CreateCourseState extends State<CreateCourse> {
                                               onTap: () {
                                                 log("message");
                                               },
-                                              child: const Icon(
-                                                  Icons.edit_outlined)),
+                                              child: Image.asset(
+                                                'assets/images/PencilSimpleLine.png',
+                                                width: 26,
+                                                height: 26,
+                                              )),
                                         ],
                                       ),
                                     ],
@@ -243,8 +246,11 @@ class _CreateCourseState extends State<CreateCourse> {
                                                 onTap: () {
                                                   log("message");
                                                 },
-                                                child: const Icon(
-                                                    Icons.edit_outlined)),
+                                                child: Image.asset(
+                                                  'assets/images/PencilSimpleLine.png',
+                                                  width: 26,
+                                                  height: 26,
+                                                )),
                                           ],
                                         ),
                                       ],
