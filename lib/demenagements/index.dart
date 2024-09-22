@@ -169,18 +169,10 @@ class _IndexDemenagementState extends State<IndexDemenagement> {
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 32,
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-        ),
+               ],
+            ),
+          ),
+        ]),
       ),
     );
   }
