@@ -15,44 +15,37 @@ class _IndexReservationState extends State<IndexReservation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.white,
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+                size: 24,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Color.fromARGB(255, 245, 245, 245),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.black,
-                            size: 24,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 37,
-                ),
                 Container(
                   height: 261,
                   color: Colors.white,
@@ -74,9 +67,8 @@ class _IndexReservationState extends State<IndexReservation> {
                           borderRadius: BorderRadius.circular(6),
                           color: const Color(0XFFE9E6E0),
                         ),
-                        child: const Icon(
-                          Icons.event_available_outlined,
-                          size: 16,
+                        child: Image.asset(
+                          'assets/images/CalendarPlus.png',
                         ),
                       ),
                       title: const Text(
@@ -104,9 +96,8 @@ class _IndexReservationState extends State<IndexReservation> {
                           borderRadius: BorderRadius.circular(6),
                           color: const Color(0XFFE9E6E0),
                         ),
-                        child: const Icon(
-                          Icons.hourglass_bottom_outlined,
-                          size: 16,
+                        child: Image.asset(
+                          'assets/images/Hourglass.png',
                         ),
                       ),
                       title: const Text(
@@ -134,9 +125,8 @@ class _IndexReservationState extends State<IndexReservation> {
                           borderRadius: BorderRadius.circular(6),
                           color: const Color(0XFFE9E6E0),
                         ),
-                        child: const Icon(
-                          Icons.event_busy_outlined,
-                          size: 16,
+                        child: Image.asset(
+                          'assets/images/CalendarX.png',
                         ),
                       ),
                       title: const Text(

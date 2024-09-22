@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pronto/courses/choose_car.dart';
 import 'package:pronto/courses/create_course.dart';
@@ -21,7 +22,7 @@ class ReservationTimeset extends StatefulWidget {
 class _ReservationTimesetState extends State<ReservationTimeset> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
-
+  TextEditingController dateController = TextEditingController();
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
@@ -119,15 +120,41 @@ class _ReservationTimesetState extends State<ReservationTimeset> {
                 ),
                 const SizedBox(height: 25),
                 TextFormField(
+                    controller: dateController,
+                    onChanged: (value) {
+                      log('dwwdd $value');
+                      dateController = value as TextEditingController;
+                    },
                     onTap: () async {
                       await showDatePickerDialog(
-                        width: 300,
-                        height: 300,
-                        context: context,
-                        initialDate: DateTime.now(),
-                        minDate: DateTime(2020, 1, 1),
-                        maxDate: DateTime(2330, 1, 1),
-                      );
+                          width: 300,
+                          height: 300,
+                          leadingDateTextStyle: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFF00020),
+                              fontWeight: FontWeight.w600),
+                          selectedCellTextStyle:
+                              TextStyle(fontSize: 15, color: Colors.white),
+                          currentDateTextStyle:
+                              TextStyle(fontSize: 15, color: Color(0xFFF00020)),
+                          currentDateDecoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xFFF00020),
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          enabledCellsTextStyle: TextStyle(
+                            fontSize: 15,
+                          ),
+                          selectedCellDecoration: BoxDecoration(
+                            color: Color(0xFFF00020),
+                            shape: BoxShape.circle,
+                          ),
+                          context: context,
+                          initialDate: DateTime.now(),
+                          minDate: DateTime(2020, 1, 1),
+                          maxDate: DateTime(2330, 1, 1),
+                          highlightColor: Color(0xFFF00020));
                     },
                     keyboardType: TextInputType.datetime,
                     readOnly: true,

@@ -213,8 +213,11 @@ class _CourseRecapState extends State<CourseRecap> {
                                               onTap: () {
                                                 log("message");
                                               },
-                                              child: const Icon(
-                                                  Icons.edit_outlined)),
+                                              child: Image.asset(
+                                                'assets/images/PencilSimpleLine.png',
+                                                width: 26,
+                                                height: 26,
+                                              )),
                                         ],
                                       ),
                                     ],
@@ -267,8 +270,11 @@ class _CourseRecapState extends State<CourseRecap> {
                                                 onTap: () {
                                                   log("message");
                                                 },
-                                                child: const Icon(
-                                                    Icons.edit_outlined)),
+                                                child: Image.asset(
+                                                  'assets/images/PencilSimpleLine.png',
+                                                  width: 26,
+                                                  height: 26,
+                                                )),
                                           ],
                                         ),
                                       ],
