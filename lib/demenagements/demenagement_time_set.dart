@@ -176,6 +176,22 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                 TextFormField(
                     onTap: () {
                       picker.DatePicker.showTimePicker(context,
+                          locale: picker.LocaleType.fr,
+                          theme: const picker.DatePickerTheme(
+                              backgroundColor: Colors.white,
+                              headerColor: Color(0xFFF00020),
+                              itemStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                              doneStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                              cancelStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              )),
                           showTitleActions: true, onChanged: (date) {
                         print('change $date in time zone ' +
                             date.timeZoneOffset.inHours.toString());
