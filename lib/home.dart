@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pronto/courses/create_course.dart';
 import 'package:pronto/demenagements/index.dart';
+import 'package:pronto/prontoschool/banner.dart';
 import 'package:pronto/reservations/index.dart';
 
 class Home extends StatefulWidget {
@@ -231,6 +232,14 @@ class _HomeState extends State<Home> {
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 const IndexDemenagement(),
+                                          ));
+                                    }
+                                    if (item['route'] == "Pronto school") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const BannerProntoShcool(),
                                           ));
                                     }
                                   },

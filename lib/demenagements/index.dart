@@ -125,45 +125,48 @@ class _IndexDemenagementState extends State<IndexDemenagement> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          // Début de la sélection
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const CourseRecap(),
-                                ));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor: const Color(
-                                    0xFFF00020), // couleur de fond du bouton
-                                // Fin de la sélection
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(26),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 14),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        // Début de la sélection
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const CourseRecap(),
+                              ));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: const Color(
+                                  0xFFF00020), // couleur de fond du bouton
+                              // Fin de la sélection
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(26),
                               ),
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Trouvez un camion',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 14),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Trouvez un camion',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-               ],
-            ),
-          ),
-        ]),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ),
+              ]),
+        ),
       ),
     );
   }
