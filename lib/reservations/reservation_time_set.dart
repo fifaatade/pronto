@@ -129,24 +129,24 @@ class _ReservationTimesetState extends State<ReservationTimeset> {
                       await showDatePickerDialog(
                           width: 300,
                           height: 300,
-                          leadingDateTextStyle: TextStyle(
+                          leadingDateTextStyle: const TextStyle(
                               fontSize: 16,
                               color: Color(0xFFF00020),
                               fontWeight: FontWeight.w600),
-                          selectedCellTextStyle:
-                              TextStyle(fontSize: 15, color: Colors.white),
-                          currentDateTextStyle:
-                              TextStyle(fontSize: 15, color: Color(0xFFF00020)),
+                          selectedCellTextStyle: const TextStyle(
+                              fontSize: 15, color: Colors.white),
+                          currentDateTextStyle: const TextStyle(
+                              fontSize: 15, color: Color(0xFFF00020)),
                           currentDateDecoration: BoxDecoration(
                             border: Border.all(
-                              color: Color(0xFFF00020),
+                              color: const Color(0xFFF00020),
                             ),
                             shape: BoxShape.circle,
                           ),
-                          enabledCellsTextStyle: TextStyle(
+                          enabledCellsTextStyle: const TextStyle(
                             fontSize: 15,
                           ),
-                          selectedCellDecoration: BoxDecoration(
+                          selectedCellDecoration: const BoxDecoration(
                             color: Color(0xFFF00020),
                             shape: BoxShape.circle,
                           ),
@@ -154,7 +154,7 @@ class _ReservationTimesetState extends State<ReservationTimeset> {
                           initialDate: DateTime.now(),
                           minDate: DateTime(2020, 1, 1),
                           maxDate: DateTime(2330, 1, 1),
-                          highlightColor: Color(0xFFF00020));
+                          highlightColor: const Color(0xFFF00020));
                     },
                     keyboardType: TextInputType.datetime,
                     readOnly: true,
@@ -183,6 +183,22 @@ class _ReservationTimesetState extends State<ReservationTimeset> {
                 TextFormField(
                     onTap: () {
                       picker.DatePicker.showTimePicker(context,
+                          locale: picker.LocaleType.fr,
+                          theme: const picker.DatePickerTheme(
+                              backgroundColor: Colors.white,
+                              headerColor: Color(0xFFF00020),
+                              itemStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                              doneStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                              cancelStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              )),
                           showTitleActions: true, onChanged: (date) {
                         print('change $date in time zone ' +
                             date.timeZoneOffset.inHours.toString());

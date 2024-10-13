@@ -4,23 +4,24 @@ import 'dart:developer';
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
     as picker;
-import 'package:pronto/demenagements/demenagement_recap.dart';
+import 'package:pronto/prontoschool/pronto_school_recap.dart';
 
-class DemenagementTimeset extends StatefulWidget {
-  const DemenagementTimeset({super.key});
+class ProntoSchoolTimeSet extends StatefulWidget {
+  const ProntoSchoolTimeSet({super.key});
 
   @override
-  State<DemenagementTimeset> createState() => _DemenagementTimesetState();
+  State<ProntoSchoolTimeSet> createState() => _ProntoSchoolTimeSetState();
 }
 
-class _DemenagementTimesetState extends State<DemenagementTimeset> {
+class _ProntoSchoolTimeSetState extends State<ProntoSchoolTimeSet> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
-
+  TextEditingController dateController = TextEditingController();
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
@@ -103,7 +104,7 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                   children: [
                     Flexible(
                         child: Text(
-                      'Quand souhaitez-vous déménage ?',
+                      'Quand souhaitez-vous partir ?',
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
@@ -118,6 +119,11 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                 ),
                 const SizedBox(height: 25),
                 TextFormField(
+                    controller: dateController,
+                    onChanged: (value) {
+                      log('dwwdd $value');
+                      dateController = value as TextEditingController;
+                    },
                     onTap: () async {
                       await showDatePickerDialog(
                           width: 300,
@@ -234,7 +240,7 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const ReservationRecap(),
+                                      const ProntoSchoolRecap(),
                                 ));
                           });
                         },
@@ -265,7 +271,6 @@ class _DemenagementTimesetState extends State<DemenagementTimeset> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
               ],
             ),
           ),

@@ -528,7 +528,11 @@ class _DriverCommingState extends State<DriverComming> {
                                                     child: ElevatedButton(
                                                       onPressed: () {
                                                         Navigator.of(context)
-                                                            .pop();
+                                                            .push(
+                                                                MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              EndCourse(),
+                                                        ));
                                                       },
                                                       style: ElevatedButton
                                                           .styleFrom(
