@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/businessplan/index.dart';
 import 'package:pronto/courses/create_course.dart';
 import 'package:pronto/demenagements/index.dart';
 import 'package:pronto/locations/index.dart';
@@ -250,6 +251,14 @@ class _HomeState extends State<Home> {
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 const LocationIndex(),
+                                          ));
+                                    }
+                                    if (item['route'] == "Plan business") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const BusinessPlan(),
                                           ));
                                     }
                                   },
