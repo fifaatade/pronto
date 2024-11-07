@@ -607,12 +607,13 @@ class _DashboardState extends State<Dashboard> {
                       pointColorMapper: (_PieData data, _) => data.color,
                       xValueMapper: (_PieData data, _) => data.category,
                       yValueMapper: (_PieData data, _) => data.amount,
+                      dataLabelMapper: (_PieData data, _) => "${data.amount}%",
                       dataLabelSettings:
                           const DataLabelSettings(isVisible: true),
                       cornerStyle: CornerStyle.bothFlat, // Coins arrondis
                       radius: '80%', // Ajuster le rayon si nécessaire
                       innerRadius:
-                          '60%', // Ajuster le rayon intérieur si nécessaire
+                          '40%', // Ajuster le rayon intérieur si nécessaire
                       strokeWidth: 4, // Largeur de la bordure
                       strokeColor: Colors
                           .white, // Couleur de la bordure pour simuler l'espace
