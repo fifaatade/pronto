@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pronto/businessplan/register_plan.dart';
 
 class BusinessPlan extends StatefulWidget {
   const BusinessPlan({super.key});
@@ -209,7 +210,12 @@ class BusinessPlanState extends State<BusinessPlan> {
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    setState(() {});
+                                    setState(() {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => RegisterPlan(),
+                                      ));
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
@@ -421,7 +427,13 @@ class BusinessPlanState extends State<BusinessPlan> {
                                   Expanded(
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        setState(() {});
+                                        setState(() {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                RegisterPlan(),
+                                          ));
+                                        });
                                       },
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
@@ -623,7 +635,12 @@ class BusinessPlanState extends State<BusinessPlan> {
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    setState(() {});
+                                    setState(() {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => RegisterPlan(),
+                                      ));
+                                    });
                                   },
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
