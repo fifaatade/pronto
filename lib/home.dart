@@ -261,6 +261,14 @@ class _HomeState extends State<Home> {
                                                 const BusinessPlan(),
                                           ));
                                     }
+                                    if (item['route'] == "Tricycle") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const IndexReservation(),
+                                          ));
+                                    }
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
