@@ -1,8 +1,6 @@
-import 'package:extended_phone_number_input/consts/enums.dart';
-import 'package:extended_phone_number_input/phone_number_input.dart';
 import 'package:flutter/material.dart';
-import 'package:pronto/auth/confirm_number.dart';
 import 'package:pronto/auth/register_password.dart';
+import 'package:pronto/services/auth_service.dart';
 
 class RegisterMainInfo extends StatefulWidget {
   const RegisterMainInfo({super.key});
@@ -14,8 +12,48 @@ class RegisterMainInfo extends StatefulWidget {
 enum Gender { homme, femme }
 
 class _RegisterMainInfoState extends State<RegisterMainInfo> {
+  final _formKey = GlobalKey<FormState>();
+
+  // Controllers pour récupérer les valeurs des champs
+  final TextEditingController _nomController = TextEditingController();
+  final TextEditingController _prenomController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   Gender? _selectedGender = Gender.homme;
   bool _acceptedTerms = false;
+
+  Future<void> _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      // Récupérer les valeurs des champs
+      final String nom = _nomController.text;
+      final String prenom = _prenomController.text;
+      final String email = _emailController.text;
+
+      // Préparer les données pour l'API
+      final Map<String, dynamic> userData = {
+        'nom': nom,
+        'prenom': prenom,
+        'email': email,
+      };
+
+      try {
+        // Envoyer les données à l'API
+        await AuthService.registerUser(userData);
+
+        // Naviguer vers la page suivante après succès
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const RegisterPassword()),
+        );
+      } catch (error) {
+        // Afficher une erreur si la requête échoue
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Une erreur s\'est produite: $error')),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,251 +61,114 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+          child: Form(
+            key: _formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  height: 244,
-                  color: Colors.white,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/logo_red.png',
-                    ),
-                  ),
+                const SizedBox(height: 40),
+                Image.asset(
+                  'assets/images/logo_red.png',
+                  height: 200,
                 ),
-                Column(
+                const SizedBox(height: 20),
+                const Row(
                   children: [
-                    const Row(
-                      children: [
-                        Text(
-                          'Inscrivez-vous',
-                          style: TextStyle(
-                              fontSize: 26,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Poppins'),
-                        ),
-                      ],
+                    Text(
+                      'Inscrivez-vous',
+                      style: TextStyle(
+                        fontSize: 26,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Poppins',
+                      ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                  ],
+                ),
+                const SizedBox(height: 20),
+                _buildTextField(
+                  controller: _nomController,
+                  label: 'Nom',
+                  hintText: 'Entrez votre nom',
+                  icon: Icons.person,
+                ),
+                const SizedBox(height: 10),
+                _buildTextField(
+                  controller: _prenomController,
+                  label: 'Prénom',
+                  hintText: 'Entrez votre prénom',
+                  icon: Icons.person_outline,
+                ),
+                const SizedBox(height: 10),
+                _buildTextField(
+                  controller: _emailController,
+                  label: 'Adresse mail',
+                  hintText: 'Entrez votre adresse mail',
+                  icon: Icons.mail_outline,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Radio<Gender>(
+                      value: Gender.homme,
+                      groupValue: _selectedGender,
+                      activeColor: const Color(0xFFF00020),
+                      onChanged: (Gender? value) {
+                        setState(() {
+                          _selectedGender = value;
+                        });
+                      },
                     ),
-                    const Row(
-                      children: [
-                        Text(
-                          'Nom',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                    const Text('Homme'),
+                    const SizedBox(width: 20),
+                    Radio<Gender>(
+                      value: Gender.femme,
+                      groupValue: _selectedGender,
+                      activeColor: const Color(0xFFF00020),
+                      onChanged: (Gender? value) {
+                        setState(() {
+                          _selectedGender = value;
+                        });
+                      },
                     ),
-                    const SizedBox(
-                      height: 5,
+                    const Text('Femme'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _acceptedTerms,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _acceptedTerms = value ?? false;
+                        });
+                      },
                     ),
-                    TextFormField(
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          hintText: 'Entrez votre nom',
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
+                    Flexible(
+                      child: Text.rich(
+                        TextSpan(
+                          text: 'J’ai lu et accepté les ',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
                             fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
                           ),
-                          prefixIcon: const Icon(Icons.person_2_outlined),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0XFFCFCECE), width: 1),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 1.5),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          'Prénom',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          hintText: 'Entrez votre prénom',
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                          prefixIcon: const Icon(Icons.person_2_outlined),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0XFFCFCECE), width: 1),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 1.5),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          'Adresse mail',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          hintText: 'Entrez votre adresse mail',
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                          ),
-                          prefixIcon: const Icon(Icons.mail_outline_rounded),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0XFFCFCECE), width: 1),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                                color: Color(0xFFF00020), width: 1.5),
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Radio<Gender>(
-                          value: Gender.homme,
-                          groupValue: _selectedGender,
-                          activeColor: const Color(0xFFF00020),
-                          onChanged: (Gender? value) {
-                            setState(() {
-                              _selectedGender = value;
-                            });
-                          },
-                        ),
-                        const Text('Homme'),
-                        SizedBox(width: 20), // Adding space between the options
-                        Radio<Gender>(
-                          activeColor: const Color(0xFFF00020),
-                          value: Gender.femme,
-                          groupValue: _selectedGender,
-                          onChanged: (Gender? value) {
-                            setState(() {
-                              _selectedGender = value;
-                            });
-                          },
-                        ),
-                        const Text('Femme'),
-                      ],
-                    ),
-
-                    // Début de la sélection
-                    Row(
-                      children: [
-                        Checkbox(
-                          side: BorderSide(
-                              color: const Color(0XFFCFCECE), width: 2),
-                          activeColor: const Color(0xFFF00020),
-                          value: _acceptedTerms,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _acceptedTerms = value ?? false;
-                            });
-                          },
-                        ),
-                        Flexible(
-                          child: Text.rich(TextSpan(
-                            text: 'J’ai lu et accepté les ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w400,
+                          children: const [
+                            TextSpan(
+                              text: 'conditions générales',
+                              style: TextStyle(color: Color(0xFFF00020)),
                             ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'conditions générales',
-                                style: TextStyle(
-                                  color: const Color(0xFFF00020),
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          )),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            // Début de la sélection
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const RegisterPassword(),
-                                        ));
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: _acceptedTerms ? _submitForm : null,
+                  style: ElevatedButton.styleFrom(
                                   elevation: 0,
                                   backgroundColor: const Color(
                                       0xFFF00020), // couleur de fond du bouton
@@ -278,7 +179,7 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 14),
                                 ),
-                                child: Container(
+                  child: Container(
                                   alignment: Alignment.center,
                                   child: const Text(
                                     'Continuer',
@@ -288,24 +189,54 @@ class _RegisterMainInfoState extends State<RegisterMainInfo> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w600,
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                  ],
-                )
+                                  ),),
+                ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hintText,
+    required IconData icon,
+    TextInputType keyboardType = TextInputType.text,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins',
+          ),
+        ),
+        const SizedBox(height: 5),
+        TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Veuillez remplir ce champ';
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+            hintText: hintText,
+            prefixIcon: Icon(icon),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
